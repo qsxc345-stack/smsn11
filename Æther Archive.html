@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHERNO_ARCHIVE_DATABASE</title>
+    <style>
+        :root {
+            --bg-black: #020205;
+            --aether-blue: #00f3ff;
+            --archive-green: #39ff14;
+            --dust-warning: #ff3e3e;
+            --border-blue: rgba(0, 243, 255, 0.3);
+            --glass-bg: rgba(0, 20, 30, 0.85);
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--aether-blue);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* 배경 스캔라인 */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(0, 255, 0, 0.03), rgba(0, 0, 0, 0), rgba(0, 255, 255, 0.03));
+            background-size: 100% 3px, 5px 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        header {
+            border: 2px solid var(--archive-green);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            background: rgba(0, 50, 0, 0.1);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+        }
+
+        .system-status {
+            position: absolute;
+            top: 5px; right: 20px;
+            font-size: 0.8rem;
+            color: var(--archive-green);
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 4px; color: var(--archive-green); }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        section {
+            border: 1px solid var(--border-blue);
+            background: var(--glass-bg);
+            padding: 20px;
+            position: relative;
+        }
+
+        section::before {
+            content: "ID: " attr(data-id);
+            position: absolute;
+            top: -10px; left: 10px;
+            background: var(--bg-black);
+            padding: 0 5px;
+            font-size: 0.7rem;
+            color: var(--aether-blue);
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--aether-blue);
+            padding-bottom: 5px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 0;
+        }
+
+        /* 에테르 상태 바 */
+        .aether-type {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--aether-blue);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .aether-type strong { color: var(--archive-green); }
+
+        /* 더스트 분류 표 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th, td {
+            border: 1px solid var(--border-blue);
+            padding: 8px;
+            text-align: left;
+        }
+        th { background: rgba(0, 243, 255, 0.1); color: var(--archive-green); }
+
+        /* 경제 지표 */
+        .economy-tag {
+            display: inline-block;
+            background: var(--archive-green);
+            color: black;
+            padding: 2px 8px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .blink { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        .location-card {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px dashed var(--aether-blue);
+        }
+
+        .location-card.eternel { border-color: var(--archive-green); color: var(--archive-green); }
+        .location-card.lostland { border-color: var(--dust-warning); color: var(--dust-warning); }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="system-status">
+            CONNECTED: [ADMIN_04] | NODE: ETERNEL_CENTER | <span class="blink">● ENCRYPTED</span>
+        </div>
+        <h1>AETHERNO ARCHIVE : DATA_EXPLORER</h1>
+        <p>> 세계를 지탱하는 에너지, '에테르'와 메가시티 시스템 데이터베이스</p>
+    </header>
+
+    <div class="grid-container">
+        
+        <section data-id="AET-001">
+            <h2>1. AETHER TYPES (에테르 형태)</h2>
+            <div class="aether-type">
+                <strong>[PLASMA]</strong> 자연 상태의 무색무취 에너지. <br>
+                <small>로스트 랜드의 아지랑이 현상 유발. 마법의 근원.</small>
+            </div>
+            <div class="aether-type" style="border-left-color: #00f3ff;">
+                <strong>[BLOOD]</strong> 형광 푸른색의 정제 액체. <br>
+                <small>도시 전력망 및 사이버네틱스 순환 에너지.</small>
+            </div>
+            <div class="aether-type" style="border-left-color: #ffffff;">
+                <strong>[CELL]</strong> 육각형 결정체 압축형. <br>
+                <small>최상위 오더 메이드 전용. 수개월 지속 출력.</small>
+            </div>
+            <div class="aether-type" style="border-left-color: #4b0082;">
+                <strong>[DUST CORE]</strong> 탁한 푸른색 종양 결정. <br>
+                <small>더스트의 심장. 정제되지 않은 고농도 위험원.</small>
+            </div>
+        </section>
+
+        <section data-id="MAG-002">
+            <h2>2. AETHER MANIPULATION (마법 기교)</h2>
+            <ul>
+                <li><strong>수식 (Formula):</strong> 기하학적 연산. 가장 정밀하고 안정적임.</li>
+                <li><strong>진동 (Vibration):</strong> 음파 공명. 발동이 빠르나 성대에 치명적.</li>
+                <li><strong>의지 (Will):</strong> 문자의 각인. 지속성이 길며 설치/저주에 특화.</li>
+            </ul>
+            <div style="border: 1px solid var(--archive-green); padding: 10px; font-size: 0.8rem;">
+                <span style="color: var(--archive-green);">[WARNING]</span> 비정제 에테르 직접 노출 시 육체 결정화(오염) 발생 위험.
+            </div>
+        </section>
+
+        <section data-id="DST-003" style="grid-column: span 2;">
+            <h2>3. DUST CLASSIFICATION (더스트 등급 및 형태)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>등급</th>
+                        <th>크기</th>
+                        <th>위험도</th>
+                        <th>특징</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>소형</td>
+                        <td>쥐 ~ 강아지</td>
+                        <td>낮음</td>
+                        <td>무리 생활, 에테르 찌꺼기 섭취</td>
+                    </tr>
+                    <tr>
+                        <td>중형</td>
+                        <td>성인 ~ 곰</td>
+                        <td>보통</td>
+                        <td>로스트 랜드 주력, 기괴한 관절 기동</td>
+                    </tr>
+                    <tr>
+                        <td>대형</td>
+                        <td>전차 ~ 건물</td>
+                        <td>치명적</td>
+                        <td>동족 포식 괴수, 물리 법칙 무시 출력</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; margin-top: 10px;">
+                <strong>[인간형]</strong> 버려진 의수/강화복 결합. 과거 인간 행동 모방. <br>
+                <strong>[짐승형]</strong> 산업 장비/파이프 결합. 예측 불가능한 기동성.
+            </p>
+        </section>
+
+        <section data-id="LOC-004">
+            <h2>4. CITY DISTRICTS (구역 정보)</h2>
+            <div class="location-card eternel">
+                <strong>ETERNEL (에테르넬)</strong>
+                <p>아카이브 심장부. 완벽한 대기 정제. 무선 에테르 충전 시스템.</p>
+            </div>
+            <div class="location-card">
+                <strong>GREY NEON (그레이 네온)</strong>
+                <p>메인 스트리트(홀로그램 광고)와 섀도우 레인(녹슨 배관과 증기) 공존.</p>
+            </div>
+            <div class="location-card lostland">
+                <strong>LOST LAND (로스트 랜드)</strong>
+                <p>금지 구역. 고농도 에테르 바다와 더스트들의 서식지.</p>
+            </div>
+        </section>
+
+        <section data-id="ECO-005">
+            <h2>5. ECONOMY (1 Cr ≒ 10 KRW)</h2>
+            <div class="economy-tag">MARKET PRICE</div>
+            <ul style="font-size: 0.85rem; list-style: none; padding-left: 0;">
+                <li>>> 캡슐 숙박(섀도우 레인): 1,500 ~ 2,000 Cr</li>
+                <li>>> 에테르 충전(회당): 500 Cr</li>
+                <li>>> 배양육 식단(메인 스트리트): 1,000 ~ 2,000 Cr</li>
+                <li>>> 에테르넬 펜트하우스: 50,000 Cr ~</li>
+            </ul>
+            <div style="background: rgba(57, 255, 20, 0.1); padding: 5px; font-size: 0.8rem; border: 1px solid var(--archive-green);">
+                STATUS: 모든 시민의 사이버웨어는 아카이브에 의해 추적 및 원격 정지 가능.
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>PROPERTY OF AETHER ARCHIVE. UNAUTHORIZED ACCESS WILL BE TERMINATED.</p>
+        <p>© 2026 ETERNO_SYSTEMS_v4.2</p>
+    </footer>
+
+</body>
+</html>
